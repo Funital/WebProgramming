@@ -1,0 +1,203 @@
+*{
+    box-sizing: border-box;     /*width, height, padding, border 모두 포함*/
+}
+
+body{
+    margin: 0;
+    background-color: #f4f6fa;
+    color: #222;
+}
+
+.title-area{
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #263859;
+    color: white;
+}
+
+.small-title{
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #aec0ff;
+}
+
+.title-area h1 {
+    margin: 10px 0;
+    font-size: 42px;
+} /*후속선택자*/
+
+.study-area{
+    width: 900px;
+    margin: 70px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.study-area h2{
+    color: blue;
+}
+
+.study-area>p{
+    color: blue;
+    margin-bottom: 40px;
+}
+
+.box-area{
+    display:flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.item{
+    width: 200px;
+
+}
+
+.box{
+    width: 120px;
+    height: 120px;
+    margin : 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.move{
+    background-color: peru;
+}
+
+.move:hover{
+    transform: translateX(40px);
+}
+
+.scale{
+    background-color: green;
+}
+
+.scale:hover{
+    transform: scale(1.2);
+}
+
+.rotate{
+    background-color: aqua;
+}
+
+.rotate:hover{
+    transform: rotate(45deg);
+}
+
+/* transition css*/
+.compare-area{
+    display: flex;
+    justify-content: space-around;
+}
+
+.compare-item{
+    width: 320px;
+}
+
+.compare-box{
+    width: 150px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    background-color: green;
+    cursor: pointer;
+}
+
+.fast:hover{
+    transform: translateX(100px);
+    background-color: yellow;
+}
+
+.smooth{
+    transition: transform 0.8s ease,
+                background-color 0.8s ease;
+}
+
+.smooth:hover{
+    transform: translateX(100px);
+    background-color: yellow;
+}
+
+/* animation css */
+.animation-area{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    height: 230px;
+}
+
+.animation-item{
+    width: 220px;;
+    position: relative;     /* 이건 시험에 X (부모에 상대적 결정)*/
+}
+
+.ball{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 80px auto 0;
+    background-color: lightblue;
+    animation: bounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-70px);
+    }
+}
+
+.spinner{
+    width: 80px;
+    height: 80px;
+    padding: 2px;
+    margin: 50px auto 0;
+    color: green;
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    animation: spin 2s linear infinite;
+
+}
+
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.runner{
+    width: 80px;
+    padding: 20px;
+    margin-top: 70px;
+    color: white;
+    background-color: indigo;
+    border-radius: 10px;
+    animation: moveRunner 2s ease-in-out infinite alternate;
+}
+
+@keyframes moveRunner {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(100px);
+    }
+}
+

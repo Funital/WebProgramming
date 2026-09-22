@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    background-color: #f2f5fa;
+}
+
+.container{
+    width: 600px;
+    margin: 100px auto;     /*100px: 위아래, auto: 좌우로 보기좋게*/
+    padding: 40px;
+    background-color: white;
+    border-radius: 18px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.guide{
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;        /* justify-content: 주어진 범위에서 자식들을 적절하게 정렬해줘 */
+}
+
+button{
+    padding: 15px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover{
+    transform: scale(1.1);
+}
+
+.hint{
+    margin-top: 30px;
+    font-weight: bold;
+}

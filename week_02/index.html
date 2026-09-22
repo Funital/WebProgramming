@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>http request, response 실습</title>
+        <link rel="stylesheet" href="style.css">    <!--rel: 어떤 종류니?-->
+    </head>
+    <body>
+        <h1>HTTP 요청과 응답</h1>   <!--h태그 : 1~6 -->
+        <section>
+            <h2>1. 일반 페이지 요청</h2>
+            <p>브라우저가 이 HTML 문서를 요청하여 화면에 표시</p>
+            <a href="result.html">결과 페이지</a>    <!--이것도 GET 방식이다.-->
+        </section>
+        <section>
+            <h2>2. GET 요청</h2>
+            <!--GET 방식은 조회 후에 ? 다음에 나오는 쿼리에 뜬다.-->
+            <form action="result.html" method="get">    <!--method 방식은 2가지: GET | POST-->
+                <!--태그마다 개행(줄바꿈)되는 경우가 있고 안되는경우가 있다.-->
+                <label for="keyword">검색어 :    </label>
+                <input id="keyword" type="text" name="k" value="spring"/>    <!--*** 여기 작성 중요 *** | 마지막 / 은 생략 가능-->
+                <button type="submit">GET 요청</button>
+            </form>
+        </section>
+        <section>
+            <h2>3. POST 요청</h2>
+<!--            POST 방식은 post 후에 ? 다음에 나오는 쿼리에 뜨지 않는다.-->
+            <form action="result.html" method="post">    <!--method 방식은 2가지: GET | POST-->
+                <!--태그마다 개행(줄바꿈)되는 경우가 있고 안되는경우가 있다.-->
+                <label for="userId">ID :   </label>
+                <input id="userId" type="text" name="id" value="student"/>    <!--*** 여기 작성 중요 *** | 마지막 / 은 생략 가능-->
+                <label for="password">비밀번호 :    </label>
+                <input id="password" type="password" name="pw" value="1234"/>
+                <button type="submit">POST 요청</button>
+            </form>
+        </section>
+        <section>
+            <h2>4. 404 상태코드</h2>
+            <a href="no-page.html">존재하지 않는 페이지 이동</a>
+        </section>
+    </body>
+</html>

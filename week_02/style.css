@@ -1,0 +1,22 @@
+/* 선택자{ 속성 : 값;  } */
+body{
+    font-family: Arial, SansSerif;
+    margin : 40px;
+}
+
+h1{
+    color : blue;
+
+}
+
+section{
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid #cccccc;  /*solid: 실선*/
+}
+
+input, button{     /* 2개 동시에 변경 시 ","로 */
+    margin: 4px;
+    padding: 8px;
+
+}
