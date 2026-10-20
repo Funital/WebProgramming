@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 등록</title>
+  <style>
+    /* body
+       웹 페이지 전체 영역에 적용됩니다.
+       font-family는 글꼴을 지정하고,
+       background-color는 페이지 전체 배경색을 지정합니다.
+    */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+    }
+    /* .container
+       class="container"가 작성된 요소에 적용됩니다.
+       class는 여러 HTML 요소에 같은 디자인을 적용할 때 사용할 수 있습니다.
+    */
+    .container {
+      width: 460px;                 /* 영역의 너비 */
+      margin: 60px auto;            /* 위아래 여백 60px, 좌우 가운데 정렬 */
+      padding: 30px;                /* 내부 여백 */
+      background-color: white;      /* 배경색 */
+      border: 1px solid #dddddd;    /* 테두리 */
+      border-radius: 12px;          /* 모서리를 둥글게 */
+    }
+
+    /* h1 태그의 글자를 가운데 정렬합니다. */
+    h1 {
+      text-align: center;
+    }
+
+    /* label
+       입력 항목의 제목 부분에 적용됩니다.
+    */
+    label {
+      display: block;               /* 한 줄 전체를 차지하도록 설정 */
+      margin-top: 16px;             /* 위쪽 여백 */
+      margin-bottom: 6px;           /* 아래쪽 여백 */
+    }
+
+    /* input과 select 입력 요소에 공통으로 적용됩니다. */
+    input,
+    select {
+      width: 100%;                  /* 부모 영역의 너비만큼 사용 */
+      padding: 10px;                /* 입력창 내부 여백 */
+      box-sizing: border-box;       /* padding까지 포함해서 너비 계산 */
+    }
+
+    /* 상품 등록 버튼에 적용됩니다. */
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      cursor: pointer;              /* 마우스를 올리면 손 모양으로 표시 */
+      background-color: #2f7cf6;   /* 파란 배경 */
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background-color: #1f66d1;
+    }
+
+    /* class="home-link"가 작성된 링크에 적용됩니다. */
+    .home-link {
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+      color: #1a56db;
+      text-decoration: underline;
+    }
+
+    /* th:errorclass로 추가되는 클래스: 오류 입력창을 빨간색으로 표시 */
+    .field-error {
+      border: 2px solid #e53935;
+      background-color: #fff5f5;
+    }
+
+    /* th:errors로 출력되는 오류 메시지 */
+    .error-message {
+      margin: 6px 0 0;
+      color: #e53935;
+      font-size: 13px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>상품 등록</h1>
+
+    <!-- novalidate: 브라우저 검증을 끄고 서버 검증을 확인하기 위한 시연용 -->
+    <!-- novalidate: 브라우저 검증을 끄고 서버 검증을 확인하기 위한 시연용 -->
+    <form th:object="${productForm}" th:action="@{/products}" method="post" novalidate>
+
+      <label for="title">상품명</label>
+      <input type="text" id="title" th:field="*{title}" th:errorclass="field-error" required>
+      <p class="error-message" th:errors="*{title}">상품명 오류</p>
+
+      <label for="price">가격</label>
+      <input type="number" id="price" th:field="*{price}" th:errorclass="field-error" min="0" required>
+      <p class="error-message" th:errors="*{price}">가격 오류</p>
+
+      <label for="quantity">수량</label>
+      <input type="number" id="quantity" th:field="*{quantity}" th:errorclass="field-error" min="1" required>
+      <p class="error-message" th:errors="*{quantity}">수량 오류</p>
+
+      <label for="category">카테고리</label>
+      <select id="category" th:field="*{category}" th:errorclass="field-error" required>
+        <option value="">카테고리를 선택하세요</option>
+        <option value="전자제품">전자제품</option>
+        <option value="도서">도서</option>
+        <option value="생활용품">생활용품</option>
+      </select>
+      <p class="error-message" th:errors="*{category}">카테고리 오류</p>
+
+      <label for="onSale">판매 여부</label>
+      <select id="onSale" th:field="*{onSale}" th:errorclass="field-error" required>
+        <option value="">판매 여부를 선택하세요</option>
+        <option value="true">판매 중</option>
+        <option value="false">판매 안 함</option>
+      </select>
+      <p class="error-message" th:errors="*{onSale}">판매 여부 오류</p>
+
+      <button type="submit">상품 등록</button>
+    </form>
+<!--    <form th:object="${productForm}" th:action="@{/products}" method="post" novalidate>-->
+
+<!--      <label for="title">상품명</label>-->
+<!--      <input type="text" id="title" th:field="*{title}" th:errorclass="field-error" required>-->
+<!--      <div class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">상품명 오류</div>-->
+
+<!--      <label for="price">가격</label>-->
+<!--      <input type="number" id="price" th:field="*{price}" th:errorclass="field-error" min="0" required>-->
+<!--      <div class="error-message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">가격 오류</div>-->
+
+<!--      <label for="quantity">수량</label>-->
+<!--      <input type="number" id="quantity" th:field="*{quantity}" th:errorclass="field-error" min="1" required>-->
+<!--      <div class="error-message" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">수량 오류</div>-->
+
+<!--      <label for="category">카테고리</label>-->
+<!--      <select id="category" th:field="*{category}" th:errorclass="field-error" required>-->
+<!--        <option value="">카테고리를 선택하세요</option>-->
+<!--        <option value="전자제품">전자제품</option>-->
+<!--        <option value="도서">도서</option>-->
+<!--        <option value="생활용품">생활용품</option>-->
+<!--      </select>-->
+<!--      <div class="error-message" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">카테고리 오류</div>-->
+
+<!--      <label for="onSale">판매 여부</label>-->
+<!--      <select id="onSale" th:field="*{onSale}" th:errorclass="field-error" required>-->
+<!--        <option value="">판매 여부를 선택하세요</option>-->
+<!--        <option value="true">판매 중</option>-->
+<!--        <option value="false">판매 안 함</option>-->
+<!--      </select>-->
+<!--      <div class="error-message" th:if="${#fields.hasErrors('onSale')}" th:errors="*{onSale}">판매 여부 오류</div>-->
+
+<!--      <button type="submit">상품 등록</button>-->
+<!--    </form>-->
+
+    <a class="home-link" th:href="@{/}">메인 화면으로</a>
+  </div>
+</body>
+</html>

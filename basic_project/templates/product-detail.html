@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 상세</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    .container {
+      width: 460px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: white;
+      border: 1px solid #dddddd;
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      margin: 16px 0;
+    }
+
+    .link-area {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .link-area a {
+      margin: 0 8px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>상품 상세</h1>
+
+  <p>번호: <strong th:text="${product.id}"></strong></p>
+  <p>상품명: <strong th:text="${product.title}"></strong></p>
+  <p>가격: <strong th:text="|${product.price}원|"></strong></p>
+  <p>수량: <strong th:text="${product.quantity}"></strong></p>
+  <p>카테고리: <strong th:text="${product.category}"></strong></p>
+  <p>
+    판매 여부:
+    <strong th:text="${product.onSale ? '판매 중' : '판매 안 함'}"></strong>
+  </p>
+
+  <div class="link-area">
+    <a th:href="@{/products}">상품 목록으로</a>
+    <a th:href="@{/}">메인 화면으로</a>
+  </div>
+</div>
+</body>
+</html>
