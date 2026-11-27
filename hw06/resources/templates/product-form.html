@@ -94,8 +94,7 @@
     <h1>상품 등록</h1>
 
     <!-- novalidate: 브라우저 검증을 끄고 서버 검증을 확인하기 위한 시연용 -->
-    <!-- novalidate: 브라우저 검증을 끄고 서버 검증을 확인하기 위한 시연용 -->
-    <form th:object="${productForm}" th:action="@{/products}" method="post" novalidate>
+    <form th:object="${productForm}" th:action="@{/product}" method="post" novalidate>
 
       <label for="title">상품명</label>
       <input type="text" id="title" th:field="*{title}" th:errorclass="field-error" required>
@@ -128,39 +127,6 @@
 
       <button type="submit">상품 등록</button>
     </form>
-<!--    <form th:object="${productForm}" th:action="@{/products}" method="post" novalidate>-->
-
-<!--      <label for="title">상품명</label>-->
-<!--      <input type="text" id="title" th:field="*{title}" th:errorclass="field-error" required>-->
-<!--      <div class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">상품명 오류</div>-->
-
-<!--      <label for="price">가격</label>-->
-<!--      <input type="number" id="price" th:field="*{price}" th:errorclass="field-error" min="0" required>-->
-<!--      <div class="error-message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">가격 오류</div>-->
-
-<!--      <label for="quantity">수량</label>-->
-<!--      <input type="number" id="quantity" th:field="*{quantity}" th:errorclass="field-error" min="1" required>-->
-<!--      <div class="error-message" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">수량 오류</div>-->
-
-<!--      <label for="category">카테고리</label>-->
-<!--      <select id="category" th:field="*{category}" th:errorclass="field-error" required>-->
-<!--        <option value="">카테고리를 선택하세요</option>-->
-<!--        <option value="전자제품">전자제품</option>-->
-<!--        <option value="도서">도서</option>-->
-<!--        <option value="생활용품">생활용품</option>-->
-<!--      </select>-->
-<!--      <div class="error-message" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">카테고리 오류</div>-->
-
-<!--      <label for="onSale">판매 여부</label>-->
-<!--      <select id="onSale" th:field="*{onSale}" th:errorclass="field-error" required>-->
-<!--        <option value="">판매 여부를 선택하세요</option>-->
-<!--        <option value="true">판매 중</option>-->
-<!--        <option value="false">판매 안 함</option>-->
-<!--      </select>-->
-<!--      <div class="error-message" th:if="${#fields.hasErrors('onSale')}" th:errors="*{onSale}">판매 여부 오류</div>-->
-
-<!--      <button type="submit">상품 등록</button>-->
-<!--    </form>-->
 
     <a class="home-link" th:href="@{/}">메인 화면으로</a>
   </div>

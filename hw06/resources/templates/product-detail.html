@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 상세</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    .container {
+      width: 480px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: white;
+      border: 1px solid #dddddd;
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .item {
+      padding: 14px;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .label {
+      display: inline-block;
+      width: 140px;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .buttons a {
+      flex: 1;
+      padding: 11px;
+      text-align: center;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .home-link {
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- [실습 1] 전체 영역 container -->
+<div class="container">
+
+  <!-- [실습 2] 제목 -->
+  <h1>상품 상세</h1>
+
+  <!-- [실습 4] 상품 번호 -->
+  <div class="item">
+    <span class="label">상품 번호</span>
+    <span th:text="${product.id}"></span>
+  </div>
+
+  <!-- [실습 5] 상품명 -->
+  <div class="item">
+    <span class="label">상품명</span>
+    <span th:text="${product.title}"></span>
+  </div>
+
+  <!-- [실습 6] 가격 -->
+  <div class="item">
+    <span class="label">가격</span>
+    <span th:text="|${product.price}원|"></span>
+  </div>
+
+  <!-- [실습 7] 수량 -->
+  <div class="item">
+    <span class="label">수량</span>
+    <span th:text="${product.quantity}"></span>
+  </div>
+
+  <!-- [실습 8] 카테고리 -->
+  <div class="item">
+    <span class="label">카테고리</span>
+    <span th:text="${product.category}"></span>
+  </div>
+
+  <!-- [실습 9] 판매 여부 -->
+  <div class="item">
+    <span class="label">판매 여부</span>
+    <span th:text="${product.onSale ? '판매 중' : '판매 안 함'}"></span>
+  </div>
+
+  <!-- [실습 10] 목록으로 이동 버튼 -->
+  <div class="buttons">
+    <a th:href="@{/product}">전체 조회</a>
+    <a th:href="@{/product/{id}/edit(id=${product.id})}">수정</a>
+    <form class="delete-form" th:action="@{/product/{id}/delete(id=${product.id})}" method="post">
+      <button type="submit">삭제</button>
+    </form>
+  </div>
+
+  <!-- [실습 11] 메인 화면 링크 -->
+  <a th:href="@{/}" class="home-link">메인 화면으로</a>
+
+</div>
+
+</body>
+</html>

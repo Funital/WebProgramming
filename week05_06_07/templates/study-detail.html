@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>스터디 신청 상세</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    .container {
+      width: 450px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: white;
+      border: 1px solid #dddddd;
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .item {
+      padding: 14px;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .label {
+      display: inline-block;
+      width: 140px;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .buttons a,
+    .buttons button {
+      flex: 1;
+      padding: 11px;
+      text-align: center;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .delete-form {
+      flex: 1;
+    }
+
+    .delete-form button {
+      width: 100%;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="item">
+      <span class="label">신청자 번호 :</span>
+      <span th:text="${study.id}"></span>
+    </div>
+    <div class="item">
+      <span class="label">이름 :</span>
+      <span th:text="${study.name}"></span>
+    </div>
+    <div class="item">
+      <span class="label">topic :</span>
+      <span th:text="${study.topic}"></span>
+    </div>
+    <div class="item">
+      <span class="label">주당 학습시간 :</span>
+      <span th:text="|${study.studyHours}시간|"></span>   <!--기말: 이번에는 |...|에 텍스트 추가. 저번에는 +로 텍스트 추가-->
+    </div>
+    <div class="buttons">
+      <a th:href="@{/study}">전체 조회</a>
+      <a th:href="@{/study/{id}/edit(id=${study.id})}">수정</a>
+      <form class="delete-form" th:action="@{/study/{id}/delete(id=${study.id})}" method="post">
+        <button type="submit">삭제</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

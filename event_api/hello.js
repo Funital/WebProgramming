@@ -1,0 +1,1 @@
+console.log("hello.js 실행 성공");

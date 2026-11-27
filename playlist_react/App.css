@@ -1,0 +1,110 @@
+:root {
+  font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  color: #eef2ff;
+  background: #10131e;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: radial-gradient(circle at 85% 5%, #302449 0, transparent 33%),
+  #10131e;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+
+.playlist-app {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 56px 24px 84px;
+}
+
+.playlist-header { margin-bottom: 30px; }
+.playlist-eyebrow { color: #b5a0ff; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.playlist-title { margin: 10px 0 8px; font-size: clamp(30px, 5vw, 44px); line-height: 1.15; letter-spacing: -.04em; }
+.playlist-subtitle { margin: 0; color: #a6aec3; font-size: 15px; }
+
+.playlist-panel {
+  background: #1b2030;
+  border: 1px solid #31384b;
+  border-radius: 22px;
+  padding: 26px;
+  margin-bottom: 22px;
+  box-shadow: 0 14px 35px #00000022;
+}
+.section-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin: 0 0 20px; }
+.section-title { margin: 0; font-size: 21px; letter-spacing: -.02em; }
+.stat-pill { display: inline-flex; padding: 7px 12px; background: #2d354b; border-radius: 999px; color: #cdd4e8; font-size: 13px; }
+
+.song-form { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, .85fr) auto; gap: 12px; align-items: end; }
+.form-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field-label { font-size: 13px; color: #b8c0d4; font-weight: 600; }
+.text-input, .select-input {
+  width: 100%; min-width: 0; min-height: 44px; padding: 10px 13px;
+  color: #eef2ff; background: #111726; border: 1px solid #3a445c;
+  border-radius: 11px; outline: none;
+}
+.text-input::placeholder { color: #77829a; }
+.text-input:focus, .select-input:focus { border-color: #a891ff; box-shadow: 0 0 0 3px #a891ff25; }
+.select-input option { color: #eef2ff; background: #111726; }
+.primary-button {
+  min-height: 44px; border: 0; border-radius: 11px;
+  padding: 10px 19px; color: #161126; background: #bba8ff;
+  font-weight: 800; white-space: nowrap; transition: background .15s;
+}
+.primary-button:hover { background: #d2c5ff; }
+
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.filter-button {
+  background: transparent; color: #b5bfd4; border: 1px solid #424a60;
+  border-radius: 999px; padding: 9px 16px; font-size: 13px;
+}
+.filter-button:hover { border-color: #aa99f0; }
+.filter-button.active { color: #21143e; background: #beaaff; border-color: #beaaff; font-weight: 700; }
+
+.song-list { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.song-card {
+  display: flex; align-items: center; gap: 15px;
+  background: #252c3e; border: 1px solid #353e52;
+  border-radius: 14px; padding: 13px 16px;
+}
+.song-art {
+  flex: 0 0 50px; width: 50px; height: 50px; border-radius: 12px;
+  background: linear-gradient(140deg, #6955a9, #a77bd7);
+  display: grid; place-items: center; font-size: 23px;
+}
+.song-info { flex: 1; min-width: 0; }
+.song-title { margin: 0 0 5px; font-size: 16px; font-weight: 700; overflow-wrap: anywhere; }
+.song-meta { margin: 0; color: #aeb7cb; font-size: 13px; overflow-wrap: anywhere; }
+.like-button {
+  flex-shrink: 0; min-width: 44px; min-height: 44px;
+  border: 1px solid #424b61; background: #1c2333; color: #aeb7cb;
+  border-radius: 12px; font-size: 22px; line-height: 1;
+}
+.like-button.liked { color: #ff7d9b; border-color: #a75a70; background: #392331; }
+.empty-message { padding: 36px 12px; color: #b2bad0; text-align: center; border: 1px dashed #485167; border-radius: 14px; }
+
+@media (max-width: 760px) {
+  .playlist-app { padding: 32px 16px 60px; }
+  .playlist-panel { padding: 19px; }
+  .song-form { grid-template-columns: 1fr 1fr; }
+  .song-form .primary-button { width: 100%; }
+}
+@media (max-width: 480px) {
+  .song-form { grid-template-columns: 1fr; }
+  .song-card { gap: 10px; padding: 12px; }
+  .song-art { width: 43px; height: 43px; flex-basis: 43px; }
+}
+.like-btn{
+  font-size:28px;
+  padding:8px;
+  cursor:pointer;
+}

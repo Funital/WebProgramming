@@ -120,7 +120,6 @@
     <p>가격: <strong th:text="${productForm.price}">25000</strong> 원</p>
     <p>수량: <strong th:text="${productForm.quantity}">10</strong> 개</p>
     <p>카테고리: <strong th:text="${productForm.category}">전자제품</strong></p>
-<!--    <p>판매 여부: <strong th:text="${productForm.onSale}">true</strong></p>-->
     <p>
       판매 여부:
       <strong th:text="${productForm.onSale ? '판매 중' : '판매 안 함'}"></strong>
@@ -128,9 +127,9 @@
   </div>
 
   <div class="link-area">
-    <a class="btn-retry" th:href="@{/products/new}">다시 등록하기</a>
+    <a class="btn-retry" th:href="@{/product/new}">다시 등록하기</a>
     <br>
-    <a th:href="@{/products}">상품 목록 보기</a>
+    <a th:href="@{/product}">상품 목록 보기</a>
     <br>
     <a class="link-home" th:href="@{/}">메인 화면으로</a>
   </div>

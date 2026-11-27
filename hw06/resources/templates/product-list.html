@@ -56,6 +56,36 @@
       margin-top: 20px;
       text-align: center;
     }
+
+    .search-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .search-form input[type="text"] {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .search-form button {
+      padding: 8px 16px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .search-result-msg {
+      margin-top: 10px;
+      color: #555555;
+      font-size: 14px;
+    }
   </style>
 </head>
 
@@ -453,7 +483,22 @@ home-link
     <h1>상품 목록</h1>
 
     <!-- 실습 3: 새 상품 등록 링크 -->
-    <a class="new-link" th:href="@{/products/new}">새 상품 등록</a>
+    <a class="new-link" th:href="@{/product/new}">새 상품 등록</a>
+
+    <!-- 검색창 -->
+    <form class="search-form" th:action="@{/product}" method="get">
+      <input type="text" name="keyword" placeholder="상품명으로 검색"
+             th:value="${keyword}">
+      <button type="submit">검색</button>
+    </form>
+
+    <!-- 검색 결과 안내 -->
+    <p class="search-result-msg" th:if="${keyword != null}">
+      '<span th:text="${keyword}"></span>' 검색 결과:
+      <strong th:text="${#lists.size(products)}"></strong>건
+      &nbsp;|&nbsp;
+      <a th:href="@{/product}">전체 목록 보기</a>
+    </p>
 
     <!-- 실습 4: 상품 목록 표 -->
     <table>
@@ -477,7 +522,7 @@ home-link
 
           <!-- 실습 8: 상품명과 상세 화면 링크 -->
           <td>
-            <a th:href="@{/products/{id}(id=${product.id})}"
+            <a th:href="@{/product/{id}(id=${product.id})}"
                th:text="${product.title}"></a>
           </td>
 
@@ -497,7 +542,8 @@ home-link
         <!-- 실습 13: 상품이 없을 때 안내 -->
         <tr th:if="${#lists.isEmpty(products)}">
           <td class="empty-message" colspan="6">
-            등록된 상품이 없습니다.
+            <span th:if="${keyword != null}">검색 결과가 없습니다.</span>
+            <span th:if="${keyword == null}">등록된 상품이 없습니다.</span>
           </td>
         </tr>
       </tbody>

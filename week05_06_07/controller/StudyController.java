@@ -1,15 +1,13 @@
 package com.example.week5.dtoexam.controller;
 
+import com.example.week5.dtoexam.domain.Study;
 import com.example.week5.dtoexam.dto.StudyForm;
 import com.example.week5.dtoexam.service.StudyService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 // ctrl+alt+o: 필요없는 import문 정리
 
@@ -44,7 +42,7 @@ public class StudyController {
 
         // mapping 시키기
         // StudyService의 save() 함수에서 ~.
-        studyService.save(studyForm);
+        studyService.save(studyForm.getName(), studyForm.getTopic(), studyForm.getStudyHours());
 
         return "redirect:/study";   // @RequestMapping으로, redirect : GetMapping으로.
         /* @ModelAttribute의 역할
@@ -64,5 +62,60 @@ public class StudyController {
     public String showStudyList(Model model){
         model.addAttribute("studies", studyService.findAll());
         return "study-list";
+    }
+
+    @GetMapping("/{id}")
+    public String showStudyDetail(@PathVariable Long id, Model model){
+        Study study = studyService.findById(id);
+        model.addAttribute("study", study);
+        return "study-detail";
+    }
+
+    /* 기말범위
+     * @PathVariable: 상세조회
+     * @RequestParam: 이름이나 주제와 같은 검색
+     * 위의 2개는 그 메서드가 실행이 될 때 필요한 값을 전달을 받는다.
+     *
+     * @GetMapping: 어떤 요청을 처리할 메서드인지 지정하는 곳
+     *
+     */
+
+    @GetMapping("/{id}/edit")   // 기말: () 안에 채우기 시험문제 나옴.
+    public String showStudyEditForm(
+            @PathVariable Long id, Model model
+    ){
+        Study study = studyService.findById(id);
+        StudyForm studyForm = new StudyForm();
+        studyForm.setName(study.getName());
+        studyForm.setTopic(study.getTopic());
+        studyForm.setStudyHours(study.getStudyHours());
+        model.addAttribute("studyId", id);
+        model.addAttribute("studyForm", studyForm);
+        return "study-edit-form";
+    }
+
+    @PostMapping("{id}/edit")
+    public String updateStudy(
+            @PathVariable Long id,
+            @Valid @ModelAttribute("studyForm") StudyForm studyForm,
+            BindingResult bindingResult, Model model
+    ){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("studyId", id);
+            return "study-edit-form";
+        }
+        studyService.update(id, studyForm.getName(), studyForm.getTopic(), studyForm.getStudyHours());
+
+        return "redirect:/study/"+id;
+    }
+
+    // 기말: delete 같은 간단한 건 통째로 작성하는 시험 나올 수도.
+    @PostMapping("{id}/delete")
+    public String deleteStudy(
+            @PathVariable Long id
+    ){
+        studyService.delete(id);
+
+        return "redirect:/study";
     }
 }
